@@ -1,9 +1,10 @@
 package com.example.shivang.mdb.Network
 
 import com.example.shivang.mdb.Models.Movie
-import retrofit2.Callback
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit.Callback
+import retrofit.http.GET
+import com.example.shivang.mdb.Models.Movie.MovieResult
+import retrofit.http.Query
 
 
 /**
@@ -17,5 +18,11 @@ interface APIInterface {
 //    fun getUpcomingMovies(@Query("primary_release_date.gte") date1: String, cb: Callback<Movies.MovieResult>)
     @GET("/movie/popular")
     fun getPopularMovies(cb: Callback<Movie.MovieResult>)
+
+    @GET("/movie/top_rated")
+    fun getTopRatedMovies(cb: Callback<Movie.MovieResult>)
+
+    @GET("/discover/movie")
+    fun getUpcomingMovies(@Query("primary_release_date.gte") date1: String, cb: Callback<Movie.MovieResult>)
 
 }

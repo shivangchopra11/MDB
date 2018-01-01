@@ -31,7 +31,7 @@ class MoviesAdapter(private val mContext: Context) : RecyclerView.Adapter<MovieV
 
         // This is how we use Picasso to load images from the internet.
         Picasso.with(mContext)
-                .load(movie.poster)
+                .load(movie.TMDB_IMAGE_PATH+movie.poster)
                 .placeholder(R.color.colorPrimaryLight)
                 .into(holder.imageView)
     }

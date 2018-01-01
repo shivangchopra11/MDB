@@ -107,8 +107,8 @@ class MyPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> Trending()
-            1 -> TopRated()
+            0 -> TopRated()
+            1 -> Trending()
             else -> Upcomming()
         }
     }
