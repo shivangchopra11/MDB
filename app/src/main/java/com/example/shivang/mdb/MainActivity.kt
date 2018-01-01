@@ -1,5 +1,6 @@
 package com.example.shivang.mdb
 
+import android.app.PendingIntent.getActivity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,6 +13,8 @@ import android.view.View
 import android.widget.*
 import com.astuetz.PagerSlidingTabStrip
 import android.graphics.Color.parseColor
+import android.util.DisplayMetrics
+import android.widget.LinearLayout
 
 
 
@@ -48,20 +51,54 @@ class MainActivity : AppCompatActivity() {
 
         tabs.tabBackground = R.drawable.selector_tab
         tabs.shouldExpand = true
-
+//        tabs.getChildAt(0).isSelected = true
         pager.adapter = adapter
+        pager.setBackgroundColor(resources.getColor(R.color.colorPrimaryLight))
 
-        val pageMargin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4f, resources
-                .displayMetrics).toInt()
-        pager.pageMargin = pageMargin
 
         tabs.setViewPager(pager)
+        tabs.setOnPageChangeListener(CustomOnPageChangeListenner(tabs));
+
+
+
+    }
+
+
+
+}
+
+class CustomOnPageChangeListenner
+(private val tabStrip: PagerSlidingTabStrip) : ViewPager.OnPageChangeListener {
+    private var previousPage = 0
+
+    init {
+        //Set the first image button in tabStrip to selected,
+        (tabStrip.getChildAt(0) as LinearLayout).getChildAt(0).isSelected = true
+    }
+
+    override fun onPageScrolled(i: Int, v: Float, i2: Int) {
+
+    }
+
+    override fun onPageSelected(i: Int) {
+        //set the previous selected page to state_selected = false
+        (tabStrip.getChildAt(0) as LinearLayout).getChildAt(previousPage).isSelected = false
+        //set the selected page to state_selected = true
+        (tabStrip.getChildAt(0) as LinearLayout).getChildAt(i).isSelected = true
+        //remember the current page
+        previousPage = i
+    }
+
+    override fun onPageScrollStateChanged(i: Int) {
+
     }
 }
 
+
+
 class MyPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
 
-    private val TITLES = arrayOf( "Top Rated", "Trending", "Favourites")
+    private val TITLES = arrayOf( "Top Rated", "Trending", "Upcoming")
 
 
     override fun getPageTitle(position: Int): CharSequence {
@@ -69,7 +106,11 @@ class MyPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
     }
 
     override fun getItem(position: Int): Fragment {
-        return ListFragment1.newInstance(position)
+        return when (position) {
+            0 -> Trending()
+            1 -> TopRated()
+            else -> Upcomming()
+        }
     }
 
     override fun getCount(): Int {

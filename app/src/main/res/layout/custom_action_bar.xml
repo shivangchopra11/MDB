@@ -21,6 +21,7 @@
         android:layout_marginRight="20dp"
         android:textSize="10sp"
         android:id="@+id/tvSearch"
+        android:focusable="false"
         android:hint="Search feature comming soon..." />
     <Button
         android:layout_width="24dp"
