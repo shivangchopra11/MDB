@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.support.v7.widget.RecyclerView
 import android.widget.ImageView
 import android.support.v7.widget.GridLayoutManager
+import android.widget.TextView
 import com.example.shivang.mdb.Models.Movie
 import com.example.shivang.mdb.Network.APIInterface
 import retrofit.RestAdapter
@@ -97,8 +98,4 @@ class Upcomming : Fragment() {
         mSwipeRefreshLayout.isRefreshing = false
     }
 
-    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageView: ImageView = itemView.findViewById<View>(R.id.imageView) as ImageView
-
-    }
 }

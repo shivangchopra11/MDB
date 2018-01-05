@@ -2,10 +2,16 @@ package com.example.shivang.mdb
 
 
 import android.content.Context
-import com.example.shivang.mdb.TopRated.MovieViewHolder
+import android.content.Intent
+import android.os.Bundle
+import android.support.v4.content.ContextCompat.startActivity
+import android.support.v7.app.AlertDialog
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import com.example.shivang.mdb.Models.Movie
 import com.squareup.picasso.Picasso
 
@@ -13,7 +19,7 @@ import com.squareup.picasso.Picasso
 /**
  * Created by shivang on 31/12/17.
  */
-class MoviesAdapter(private val mContext: Context) : RecyclerView.Adapter<MovieViewHolder>() {
+class MoviesAdapter(private val mContext: Context) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
     private var mMovieList: ArrayList<Movie>? = null
     private var mInflater: LayoutInflater = LayoutInflater.from(mContext)
 
@@ -34,6 +40,22 @@ class MoviesAdapter(private val mContext: Context) : RecyclerView.Adapter<MovieV
                 .load(movie.TMDB_IMAGE_PATH+movie.poster)
                 .placeholder(R.color.colorPrimaryLight)
                 .into(holder.imageView)
+        holder.tvDetails.text = movie.title + "\n" + movie.date + "\n" + if(movie.adult=="false") "U/A" else "A"
+        holder.itemView.setOnClickListener {
+            val intent = Intent(mContext, MovieDetail::class.java)
+            intent.putExtra("backdrop", movie.backdrop)
+            intent.putExtra("poster", movie.poster)
+            intent.putExtra("title",movie.title)
+            var year : String="";
+            for (i in 0..3) {
+                year += movie.date?.get(i)
+            }
+            intent.putExtra("year",year)
+            intent.putExtra("desc",movie.description)
+            intent.putExtra("rating",movie.rating)
+
+            startActivity(mContext,intent,Bundle())
+        }
     }
 
     override fun getItemCount(): Int {
@@ -45,5 +67,11 @@ class MoviesAdapter(private val mContext: Context) : RecyclerView.Adapter<MovieV
         this.mMovieList!!.addAll(movieList)
         // The adapter needs to know that the data has changed. If we don't call this, app will crash.
         notifyDataSetChanged()
+    }
+    inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var imageView: ImageView = itemView.findViewById<View>(R.id.imageView) as ImageView
+        var tvDetails: TextView = itemView.findViewById<View>(R.id.tvDetails) as TextView
+        val pos = layoutPosition
+
     }
 }

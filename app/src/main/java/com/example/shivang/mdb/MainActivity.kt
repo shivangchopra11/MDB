@@ -1,6 +1,7 @@
 package com.example.shivang.mdb
 
 import android.app.PendingIntent.getActivity
+import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setCustomView(R.layout.custom_action_bar)
@@ -34,16 +36,14 @@ class MainActivity : AppCompatActivity() {
         val searchButton = view.findViewById<View>(R.id.bSearch) as Button
         val searchBar = view.findViewById<View>(R.id.tvSearch) as EditText
 
-        searchButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-//                if(searchBar.visibility== LinearLayout.GONE) {
+        searchButton.setOnClickListener {
+            //                if(searchBar.visibility== LinearLayout.GONE) {
 //                    searchBar.visibility = LinearLayout.VISIBLE
 //                }
 //                else {
 //                    searchBar.visibility = LinearLayout.GONE
 //                }
-            }
-        })
+        }
 
         var tabs: PagerSlidingTabStrip = findViewById<View>(R.id.tabs) as PagerSlidingTabStrip
         var pager: ViewPager = findViewById<View>(R.id.pager) as ViewPager

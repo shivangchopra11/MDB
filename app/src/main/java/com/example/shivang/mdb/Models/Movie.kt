@@ -14,7 +14,11 @@ class Movie {
     var description: String? = null
     @SerializedName("backdrop_path")
     var backdrop: String? = null
-
+    @SerializedName("release_date")
+    var date: String? = null
+    var adult: String? = null
+    @SerializedName("vote_average")
+    var rating: Double? = null
     class MovieResult {
         lateinit var results: List<Movie>
     }
