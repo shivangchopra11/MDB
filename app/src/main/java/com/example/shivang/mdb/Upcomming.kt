@@ -29,7 +29,7 @@ class Upcomming : Fragment() {
         val rootView = inflater!!.inflate(R.layout.activity_top_rated, container, false)
         mRecyclerView = rootView.findViewById<View>(R.id.recyclerView) as RecyclerView
         mRecyclerView.layoutManager = GridLayoutManager(container!!.context, 2)
-        mAdapter = MoviesAdapter(container!!.context)
+        mAdapter = MoviesAdapter(container!!.context,1)
         mRecyclerView.setAdapter(mAdapter)
 //        val movies = ArrayList<Movie>()
 //

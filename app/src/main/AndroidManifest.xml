@@ -18,12 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Trending" />
-        <activity android:name=".Upcomming" />
-        <activity
-            android:name=".MovieDetails"
-            android:label="@string/title_activity_movie_details"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MovieDetail"
             android:label="@string/title_activity_movie_detail"

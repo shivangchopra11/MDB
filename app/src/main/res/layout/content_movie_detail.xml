@@ -30,6 +30,49 @@
             android:gravity="center"
             android:layout_margin="10dp"
             android:autoSizeTextType="uniform"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorSecondary"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:autoSizeTextType="uniform"
+            android:text="Trailers"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorSecondary"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:autoSizeTextType="uniform"
+            android:text="Cast"/>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/movieCast"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".MovieDetail"
+            android:background="@color/colorPrimaryLight"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorSecondary"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:autoSizeTextType="uniform"
+            android:text="Similar"/>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/similarMovies"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".MovieDetail"
+            android:background="@color/colorPrimaryLight"/>
+
+
 
         <TextView
             android:layout_width="wrap_content"

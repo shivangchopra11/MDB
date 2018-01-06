@@ -18,6 +18,9 @@ import retrofit.Callback
 import retrofit.RestAdapter
 import retrofit.RetrofitError
 import retrofit.client.Response
+import android.support.v7.widget.LinearLayoutManager
+
+
 
 
 class TopRated : Fragment() {
@@ -33,8 +36,8 @@ class TopRated : Fragment() {
 //            mRecyclerView.layoutManager = GridLayoutManager(container!!.context, 3)
 //        }
         mRecyclerView.layoutManager = GridLayoutManager(container!!.context, 2)
-        mAdapter = MoviesAdapter(container!!.context)
-        mRecyclerView.setAdapter(mAdapter)
+        mAdapter = MoviesAdapter(container!!.context,1)
+        mRecyclerView.adapter = mAdapter
 //        val movies = ArrayList<Movie>()
 //        for (i in 0..24) {
 //            movies.add(Movie())
@@ -91,6 +94,7 @@ class TopRated : Fragment() {
             }
         })
         mSwipeRefreshLayout.isRefreshing = false
+
     }
 
 

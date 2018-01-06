@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName
  */
 class Movie {
     val TMDB_IMAGE_PATH = "http://image.tmdb.org/t/p/w500"
+    var id : Int? = null
     var title: String? = null
     @SerializedName("poster_path")
     var poster: String? = null

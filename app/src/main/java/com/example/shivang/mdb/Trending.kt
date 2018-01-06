@@ -27,7 +27,7 @@ class Trending : Fragment() {
         val rootView = inflater!!.inflate(R.layout.activity_trending, container, false)
         mRecyclerView = rootView.findViewById<View>(R.id.recyclerView) as RecyclerView
         mRecyclerView.layoutManager = GridLayoutManager(container!!.context, 2)
-        mAdapter = MoviesAdapter(container!!.context)
+        mAdapter = MoviesAdapter(container!!.context,1)
         mRecyclerView.setAdapter(mAdapter)
 //        val movies = ArrayList<Movie>()
 //        for (i in 0..24) {

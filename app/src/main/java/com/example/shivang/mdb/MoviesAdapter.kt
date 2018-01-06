@@ -19,16 +19,21 @@ import com.squareup.picasso.Picasso
 /**
  * Created by shivang on 31/12/17.
  */
-class MoviesAdapter(private val mContext: Context) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
+class MoviesAdapter(private val mContext: Context,var id1:Int) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
     private var mMovieList: ArrayList<Movie>? = null
     private var mInflater: LayoutInflater = LayoutInflater.from(mContext)
+    lateinit var view : View
+
 
     init {
         this.mMovieList = ArrayList<Movie>()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val view = mInflater.inflate(R.layout.row_movie, parent, false)
+        view = if(id1==2)
+            mInflater.inflate(R.layout.row_movie_detail, parent, false)
+        else
+            mInflater.inflate(R.layout.row_movie, parent, false)
         return MovieViewHolder(view)
     }
 
@@ -46,6 +51,7 @@ class MoviesAdapter(private val mContext: Context) : RecyclerView.Adapter<Movies
             intent.putExtra("backdrop", movie.backdrop)
             intent.putExtra("poster", movie.poster)
             intent.putExtra("title",movie.title)
+            intent.putExtra("id",movie.id)
             var year : String="";
             for (i in 0..3) {
                 year += movie.date?.get(i)
