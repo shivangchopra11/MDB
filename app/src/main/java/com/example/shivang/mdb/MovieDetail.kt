@@ -19,7 +19,10 @@ import android.util.Log
 import android.view.View
 import com.example.shivang.mdb.Models.Credits
 import com.example.shivang.mdb.Models.Movie
+import com.example.shivang.mdb.Models.Video
 import com.example.shivang.mdb.Network.APIInterface
+import com.google.android.youtube.player.YouTubeApiServiceUtil
+import com.google.android.youtube.player.YouTubeInitializationResult
 import kotlinx.android.synthetic.main.content_movie_detail.*
 import retrofit.Callback
 import retrofit.RestAdapter
@@ -33,6 +36,8 @@ class MovieDetail : AppCompatActivity() {
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mCastAdapter: CastAdapter
     private lateinit var mCastView: RecyclerView
+    private lateinit var mVideoAdapter: VideoAdapter
+    private lateinit var mVideoView: RecyclerView
     private val TAG = "TAG"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,6 +130,26 @@ class MovieDetail : AppCompatActivity() {
 
             }
         })
+
+        mVideoView = findViewById<View>(R.id.movieTrailer) as RecyclerView
+        val horizontalLayoutManager2 = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        mVideoView.layoutManager = horizontalLayoutManager2
+        mVideoAdapter = VideoAdapter(this)
+        mVideoView.adapter = mVideoAdapter
+        service.getVideos(id, object : Callback<Video.VideoResult> {
+
+            override fun success(videoResult: Video.VideoResult, response: Response) {
+//                Log.v(TAG, castResult.cast.size.toString())
+                mVideoAdapter.setMovisetVideoList(videoResult.results)
+            }
+
+            override fun failure(error: RetrofitError) {
+
+            }
+        })
+
+
+
 
 
 

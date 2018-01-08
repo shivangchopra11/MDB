@@ -39,6 +39,13 @@
             android:layout_margin="10dp"
             android:autoSizeTextType="uniform"
             android:text="Trailers"/>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/movieTrailer"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".MovieDetail"
+            android:background="@color/colorPrimaryLight"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,13 +81,13 @@
 
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="@dimen/text_margin"
-            android:textColor="@android:color/background_light"
-            android:text="@string/large_text" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_margin="@dimen/text_margin"-->
+            <!--android:textColor="@android:color/background_light"-->
+            <!--android:text="@string/large_text" />-->
     </LinearLayout>
 
 

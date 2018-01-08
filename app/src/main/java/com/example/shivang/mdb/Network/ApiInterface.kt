@@ -5,6 +5,7 @@ import com.example.shivang.mdb.Models.Movie
 import retrofit.Callback
 import retrofit.http.GET
 import com.example.shivang.mdb.Models.Movie.MovieResult
+import com.example.shivang.mdb.Models.Video
 import retrofit.http.Path
 import retrofit.http.Query
 
@@ -32,6 +33,11 @@ interface APIInterface {
 
     @GET("/movie/{id}/credits")
     fun getCredits(@Path("id") id : Int,cb: Callback<Credits.CastResult>)
+
+    @GET("/movie/{id}/videos")
+    fun getVideos(@Path("id") id : Int,cb: Callback<Video.VideoResult>)
+
+
 
 
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.CardView android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+app:cardCornerRadius="10dp"
+app:cardElevation="0dp"
+android:gravity="center"
+android:layout_margin="5dp"
+app:cardBackgroundColor="@color/colorPrimaryLight"
+android:layout_gravity="center"
+xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.youtube.player.YouTubeThumbnailView
+            android:id="@+id/ivVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_circle_filled_white_24dp"
+            android:layout_gravity="center"/>
+
+        <!-- Video Thumbnail -->
+
+
+        <!-- Video Title -->
+
+    </FrameLayout>
+
+</android.support.v7.widget.CardView>
