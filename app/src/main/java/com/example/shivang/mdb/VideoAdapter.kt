@@ -15,6 +15,8 @@ import com.example.shivang.mdb.Models.Video
 import com.google.android.youtube.player.YouTubeThumbnailView
 import com.squareup.picasso.Picasso
 import android.R.attr.thumb
+import android.support.v4.content.ContextCompat.startActivity
+import com.google.android.youtube.player.YouTubeStandalonePlayer
 import com.google.android.youtube.player.YouTubeThumbnailLoader
 
 
@@ -26,6 +28,7 @@ class VideoAdapter(private val mContext: Context) : RecyclerView.Adapter<VideoAd
     private var mVideoList: ArrayList<Video>? = null
     private var mInflater: LayoutInflater = LayoutInflater.from(mContext)
     lateinit var view : View
+    lateinit var parent : ViewGroup
 
 
     init {
@@ -34,6 +37,7 @@ class VideoAdapter(private val mContext: Context) : RecyclerView.Adapter<VideoAd
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         view = mInflater.inflate(R.layout.row_movie_video, parent, false)
+        this.parent = parent
         return VideoViewHolder(view)
     }
 
@@ -48,7 +52,10 @@ class VideoAdapter(private val mContext: Context) : RecyclerView.Adapter<VideoAd
         holder.itemView.setOnClickListener {
             val intent = Intent(mContext, TrailerPlayer::class.java)
             intent.putExtra("key", video.key)
-            ContextCompat.startActivity(mContext, intent, Bundle())
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            ContextCompat.startActivity(mContext.applicationContext, intent, Bundle())
+//            val intent = YouTubeStandalonePlayer.createVideoIntent(MovieDetail(), "AIzaSyDEDEoaBuCJMuozOmqfDj_DWfwWidlwzbg", video.key, 0, false, false)
+//            startActivity(mContext,intent,Bundle())
         }
     }
 
