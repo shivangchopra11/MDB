@@ -37,6 +37,9 @@ interface APIInterface {
     @GET("/movie/{id}/videos")
     fun getVideos(@Path("id") id : Int,cb: Callback<Video.VideoResult>)
 
+    @GET("/search/movie")
+    fun getSearchMovies(@Query("query") name : String, cb: Callback<Movie.MovieResult>)
+
 
 
 

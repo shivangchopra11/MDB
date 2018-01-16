@@ -16,14 +16,19 @@ import com.astuetz.PagerSlidingTabStrip
 import android.graphics.Color.parseColor
 import android.util.DisplayMetrics
 import android.widget.LinearLayout
-
-
+import android.support.v4.widget.SearchViewCompat.setSearchableInfo
+import android.app.SearchManager
+import android.content.Context
+import android.support.v4.view.MenuItemCompat
+import android.support.v7.widget.SearchView
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
 
-
+    lateinit var searchBar : EditText
+    lateinit var searchButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,16 +38,24 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setCustomView(R.layout.custom_action_bar)
         val view = supportActionBar!!.customView
-        val searchButton = view.findViewById<View>(R.id.bSearch) as Button
-        val searchBar = view.findViewById<View>(R.id.tvSearch) as EditText
-
+        searchButton = view.findViewById<View>(R.id.bSearch) as Button
+        searchBar = view.findViewById<View>(R.id.tvSearch) as EditText
+        val searchLayout : FrameLayout = searchLayout
+        var frag1 : SearchActivity = SearchActivity()
+        supportFragmentManager.beginTransaction().add(R.id.searchLayout,frag1).commit()
+        searchLayout.visibility = FrameLayout.GONE
+        searchBar.visibility = LinearLayout.GONE
         searchButton.setOnClickListener {
-            //                if(searchBar.visibility== LinearLayout.GONE) {
-//                    searchBar.visibility = LinearLayout.VISIBLE
-//                }
-//                else {
-//                    searchBar.visibility = LinearLayout.GONE
-//                }
+                if(searchBar.visibility== LinearLayout.GONE) {
+                    searchBar.visibility = LinearLayout.VISIBLE
+                    searchLayout.visibility = FrameLayout.VISIBLE
+                    mainView.visibility = RelativeLayout.GONE
+                }
+                else {
+                    searchBar.visibility = LinearLayout.GONE
+                    searchLayout.visibility = FrameLayout.GONE
+                    mainView.visibility = RelativeLayout.VISIBLE
+                }
         }
 
         var tabs: PagerSlidingTabStrip = findViewById<View>(R.id.tabs) as PagerSlidingTabStrip
@@ -64,8 +77,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
+    override fun onBackPressed() {
+        if(mainView.visibility==RelativeLayout.VISIBLE)
+            super.onBackPressed()
+        else
+            searchButton.performClick()
+    }
 }
+
 
 class CustomOnPageChangeListenner
 (private val tabStrip: PagerSlidingTabStrip) : ViewPager.OnPageChangeListener {

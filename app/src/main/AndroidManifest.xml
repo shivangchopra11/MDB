@@ -22,8 +22,9 @@
             android:name=".MovieDetail"
             android:label="@string/title_activity_movie_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TrailerPlayer"
-            android:configChanges="orientation|screenSize"></activity>
+        <activity
+            android:name=".TrailerPlayer"
+            android:configChanges="orientation|screenSize" />
     </application>
 
 </manifest>
